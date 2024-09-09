@@ -130,6 +130,7 @@ class PolicyHolderForm extends Component {
     !this.isMandatoryFieldsEmpty() &&
     this.doesPolicyHolderChange() &&
     this.props.isPolicyHolderCodeValid &&
+    this.props.isPolicyHolderEmployerTinValid &&
     this.state.isFormValid;
 
   save = (policyHolder) => {
@@ -202,6 +203,8 @@ const mapStateToProps = (state) => ({
   policyHolder: state.policyHolder.policyHolder,
   isPolicyHolderCodeValid:
     state.policyHolder?.validationFields?.policyHolderCode?.isValid,
+  isPolicyHolderEmployerTinValid:
+    state.policyHolder?.validationFields?.employerTin?.isValid,
   submittingMutation: state.policyHolder.submittingMutation,
   mutation: state.policyHolder.mutation,
 });

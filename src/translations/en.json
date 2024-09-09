@@ -100,5 +100,9 @@
     "policyHolder.selectEconomicUnit.message": "Select the Economic Unit you want to work with.",
     "policyHolder.selectEconomicUnit.confirm": "Confirm",
     "policyHolder.selectEconomicUnit.logout": "Logout",
-    "policyHolder.EconomicUnitChangeButton.tooltip": "Change your Economic Unit"
+    "policyHolder.EconomicUnitChangeButton.tooltip": "Change your Economic Unit",
+    "policyHolder.remark": "Remark",
+    "policyHolder.employerType": "Employer Type/Categorie",
+    "policyHolder.TIN": "Employer TIN",
+    "policyHolder.employerTinTaken": "Policy holder employer TIN already exists"
 }
