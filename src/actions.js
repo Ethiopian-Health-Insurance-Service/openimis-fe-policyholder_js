@@ -27,6 +27,9 @@ const POLICYHOLDER_FULL_PROJECTION = (modulesManager) => [
   "dateValidFrom",
   "dateValidTo",
   "isDeleted",
+  "employerTin",
+  "employertype",
+  "remarks"
 ];
 
 export const POLICYHOLDER_PICKER_PROJECTION = ["id", "code", "tradeName"];

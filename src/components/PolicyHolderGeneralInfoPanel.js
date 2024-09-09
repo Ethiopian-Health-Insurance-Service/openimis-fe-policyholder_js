@@ -449,7 +449,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               module="policyHolder"
               label="remark"
               inputProps={{ maxLength: MAX_ADDRESS_LENGTH }}
-              value={!!edited && !!edited.remark ? edited.remarks : ""}
+              value={!!edited && !!edited.remarks ? edited.remarks : ""}
               onChange={(v) => this.updateAttribute("remarks", v)}
               readOnly={isPolicyHolderPortalUser}
             />
