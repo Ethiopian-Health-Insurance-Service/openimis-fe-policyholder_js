@@ -803,6 +803,18 @@ export const policyHolderCodeValidation = (mm, variables) => {
   );
 };
 
+export const policyHolderEmployerTinValidation = (mm, variables) => {
+  return graphqlWithVariables(
+    `
+    query ($policyHolderEmployerTin: String!) {
+      isValid: isUniqueEmployerTin(employerTin: $policyHolderEmployerTin)
+    }
+    `,
+    variables,
+    "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION"
+  );
+};
+
 export const policyHolderCodeSetValid = () => {
   return (dispatch) => {
     dispatch({
@@ -811,9 +823,23 @@ export const policyHolderCodeSetValid = () => {
   };
 };
 
+export const policyHolderEmployerTinSetValid = () => {
+  return (dispatch) => {
+    dispatch({
+      type: "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_SET_VALID",
+    });
+  };
+};
+
 export const policyHolderCodeClear = () => {
   return (dispatch) => {
     dispatch({ type: "POLICYHOLDER_CODE_FIELDS_VALIDATION_CLEAR" });
+  };
+};
+
+export const policyHolderEmployerTinClear = () => {
+  return (dispatch) => {
+    dispatch({ type: "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_CLEAR" });
   };
 };
 

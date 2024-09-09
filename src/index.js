@@ -36,6 +36,7 @@ import { PolicyHolderUsersTabLabel, PolicyHolderUsersTabPanel } from "./componen
 import { POLICYHOLDER_PICKER_PROJECTION } from "./actions";
 import EconomicUnitDialog from "./dialogs/EconomicUnitDialog";
 import EconomicUnitChangeButton from "./components/EconomicUnitChangeButton";
+import EmployerTypePicker from "./pickers/EmployerTypePicker";
 
 const ROUTE_POLICY_HOLDERS = "policyHolders";
 const ROUTE_POLICY_HOLDER = "policyHolders/policyHolder";
@@ -52,6 +53,7 @@ const DEFAULT_CONFIG = {
         { key: "policyHolder.PolicyHolderPicker", ref: PolicyHolderPicker },
         { key: "policyHolder.PolicyHolderPicker.projection", ref: POLICYHOLDER_PICKER_PROJECTION },
         { key: "policyHolder.PolicyHolderInsureePicker", ref: PolicyHolderInsureePicker },
+        { key: "policyHolder.EmployerTypePicker", ref: EmployerTypePicker },
         { key: "policyHolder.PolicyHolderInsureePicker.projection", ref:
             [
                 "id",

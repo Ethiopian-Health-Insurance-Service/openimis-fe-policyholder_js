@@ -358,6 +358,66 @@ function reducer(
           },
         },
       };
+      case "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_REQ":
+      return {
+        ...state,
+        validationFields: {
+          ...state.validationFields,
+          employerTin: {
+            isValidating: true,
+            isValid: false,
+            validationError: null,
+          },
+        },
+      };
+    case "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_RESP":
+      return {
+        ...state,
+        validationFields: {
+          ...state.validationFields,
+          employerTin: {
+            isValidating: false,
+            isValid: action.payload?.data?.isValid,
+            validationError: formatGraphQLError(action.payload),
+          },
+        },
+      };
+    case "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_ERR":
+      return {
+        ...state,
+        validationFields: {
+          ...state.validationFields,
+          employerTin: {
+            isValidating: false,
+            isValid: false,
+            validationError: formatServerError(action.payload),
+          },
+        },
+      };
+    case "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_CLEAR":
+      return {
+        ...state,
+        validationFields: {
+          ...state.validationFields,
+          employerTin: {
+            isValidating: true,
+            isValid: false,
+            validationError: null,
+          },
+        },
+      };
+    case "POLICYHOLDER_EMPLOYER_TIN_FIELDS_VALIDATION_SET_VALID":
+      return {
+        ...state,
+        validationFields: {
+          ...state.validationFields,
+          employerTin: {
+            isValidating: false,
+            isValid: true,
+            validationError: null,
+          },
+        },
+      };
     case 'SAVE_ECONOMIC_UNIT':
       return {
         ...state,

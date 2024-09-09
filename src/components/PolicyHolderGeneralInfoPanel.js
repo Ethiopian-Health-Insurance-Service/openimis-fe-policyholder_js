@@ -19,6 +19,9 @@ import {
   policyHolderCodeClear,
   policyHolderCodeSetValid,
   policyHolderCodeValidation,
+  policyHolderEmployerTinValidation,
+  policyHolderEmployerTinSetValid,
+  policyHolderEmployerTinClear
 } from "../actions";
 import {
   MAX_ACCOUNTANCYACCOUNT_LENGTH,
@@ -168,6 +171,11 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
     return input !== savedPolicyHolderCode;
   };
 
+  shouldValidateEmployerTin = (input) => {
+    const { savedPolicyHolderEmployerTin } = this.props;
+    return input !== savedPolicyHolderEmployerTin;
+  };
+
   render() {
     const {
       intl,
@@ -178,6 +186,9 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
       isCodeValid,
       isCodeValidating,
       validationError,
+      isEmployerTinValid,
+      isEmployerTinValidating,
+      validationEmployerTinError
     } = this.props;
     return (
       <Fragment>
@@ -233,6 +244,25 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
+          <Grid item xs={3} className={classes.item}>
+            <ValidatedTextInput
+              itemQueryIdentifier="policyHolderEmployerTin"
+              codeTakenLabel="policyHolder.employerTinTaken"
+              shouldValidate={this.shouldValidateEmployerTin}
+              isValid={isEmployerTinValid}
+              isValidating={isEmployerTinValidating}
+              validationError={validationEmployerTinError}
+              action={policyHolderEmployerTinValidation}
+              clearAction={policyHolderEmployerTinClear}
+              setValidAction={policyHolderEmployerTinSetValid}
+              module="policyHolder"
+              required={true}
+              label="TIN"
+              value={!!edited && !!edited.employerTin ? edited.employerTin : ""}
+              onChange={(v) => this.updateAttribute("employerTin", v)}
+              readOnly={isPolicyHolderPortalUser}
+            />
+          </Grid>
           <Grid item xs={2} className={classes.item}>
             <TextInput
               module="policyHolder"
@@ -241,6 +271,17 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               inputProps={{ maxLength: MAX_TRADENAME_LENGTH }}
               value={!!edited && !!edited.tradeName ? edited.tradeName : ""}
               onChange={(v) => this.updateAttribute("tradeName", v)}
+              readOnly={isPolicyHolderPortalUser}
+            />
+          </Grid>
+          <Grid item xs={2} className={classes.item}>
+            <PublishedComponent
+              pubRef="policyHolder.EmployerTypePicker"
+              module="policyHolder"
+              label="employerType"
+              withNull={false}
+              value={!!edited ? edited.employerType : null}
+              onChange={(v) => this.updateAttribute("employerType", v)}
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
@@ -403,6 +444,16 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
+          <Grid item xs={3} className={classes.item}>
+            <TextAreaInput
+              module="policyHolder"
+              label="remark"
+              inputProps={{ maxLength: MAX_ADDRESS_LENGTH }}
+              value={!!edited && !!edited.remark ? edited.remarks : ""}
+              onChange={(v) => this.updateAttribute("remarks", v)}
+              readOnly={isPolicyHolderPortalUser}
+            />
+          </Grid>
         </Grid>
       </Fragment>
     );
@@ -416,6 +467,12 @@ const mapStateToProps = (store) => ({
   validationError:
     store.policyHolder?.validationFields?.policyHolderCode?.validationError,
   savedPolicyHolderCode: store.policyHolder?.policyHolder?.code,
+  isEmployerTinValid: store.policyHolder?.validationFields?.employerTin?.isValid,
+  isEmployerTinValidating:
+    store.policyHolder?.validationFields?.employerTin?.isValidating,
+  validationEmployerTinError:
+    store.policyHolder?.validationFields?.employerTin?.validationError,
+  savedPolicyHolderEmployerTin: store.policyHolder?.policyHolder?.employerTin,
 });
 
 export default withModulesManager(
