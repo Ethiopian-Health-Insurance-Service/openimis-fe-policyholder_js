@@ -28,7 +28,7 @@ const POLICYHOLDER_FULL_PROJECTION = (modulesManager) => [
   "dateValidTo",
   "isDeleted",
   "employerTin",
-  "employertype",
+  "employerType",
   "remarks"
 ];
 
