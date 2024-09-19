@@ -280,7 +280,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               module="policyHolder"
               label="employerType"
               withNull={false}
-              value={!!edited ? edited.employerType : null}
+              value={!!edited ? parseInt(edited.employerType) : null}
               onChange={(v) => this.updateAttribute("employerType", v)}
               readOnly={isPolicyHolderPortalUser}
             />

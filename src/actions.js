@@ -282,16 +282,12 @@ function formatPolicyHolderGQL(policyHolder) {
             : ""
         }
         ${
-          !!policyHolder.employerType
-            ? `employerType: "${formatGQLString(
-                policyHolder.employerType
-              )}"`
-            : ""
+          !!policyHolder.employerType ? `employerType: "${policyHolder.employerType}"` : ""
         }
         ${
-          !!policyHolder.remark
-            ? `remark: "${formatGQLString(
-                policyHolder.remark
+          !!policyHolder.remarks
+            ? `remarks: "${formatGQLString(
+                policyHolder.remarks
               )}"`
             : ""
         }
