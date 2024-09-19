@@ -282,14 +282,14 @@ function formatPolicyHolderGQL(policyHolder) {
             : ""
         }
         ${
-          !!policyHolder.employerTin
+          !!policyHolder.employerType
             ? `employerType: "${formatGQLString(
                 policyHolder.employerType
               )}"`
             : ""
         }
         ${
-          !!policyHolder.employerTin
+          !!policyHolder.remark
             ? `remark: "${formatGQLString(
                 policyHolder.remark
               )}"`
