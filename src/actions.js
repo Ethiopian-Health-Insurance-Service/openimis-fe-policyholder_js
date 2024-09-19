@@ -274,6 +274,27 @@ function formatPolicyHolderGQL(policyHolder) {
             ? `dateValidTo: "${dateTimeToDate(policyHolder.dateValidTo)}"`
             : ""
         }
+        ${
+          !!policyHolder.employerTin
+            ? `employerTin: "${formatGQLString(
+                policyHolder.employerTin
+              )}"`
+            : ""
+        }
+        ${
+          !!policyHolder.employerTin
+            ? `employerType: "${formatGQLString(
+                policyHolder.employerType
+              )}"`
+            : ""
+        }
+        ${
+          !!policyHolder.employerTin
+            ? `remark: "${formatGQLString(
+                policyHolder.remark
+              )}"`
+            : ""
+        }
     `;
 }
 
