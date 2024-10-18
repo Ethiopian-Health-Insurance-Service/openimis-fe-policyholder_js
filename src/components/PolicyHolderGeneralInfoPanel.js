@@ -191,8 +191,6 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
       isEmployerTinValidating,
       validationEmployerTinError,
     } = this.props;
-    console.log("this fields ", this.fields);
-    console.log("edited value ", edited);
     return (
       <Fragment>
         <Grid container className={classes.tableTitle}>
