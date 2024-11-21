@@ -371,7 +371,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          {this.fields.guaranteeNo !== "N" && (
+          {this.fields.AccountDetails !== "N" && (
             <>
               <Grid item xs={2} className={classes.item}>
                 <TextInput
