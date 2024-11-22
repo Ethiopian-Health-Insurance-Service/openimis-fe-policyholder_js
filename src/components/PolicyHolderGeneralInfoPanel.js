@@ -21,7 +21,7 @@ import {
   policyHolderCodeValidation,
   policyHolderEmployerTinValidation,
   policyHolderEmployerTinSetValid,
-  policyHolderEmployerTinClear
+  policyHolderEmployerTinClear,
 } from "../actions";
 import {
   MAX_ACCOUNTANCYACCOUNT_LENGTH,
@@ -136,6 +136,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
         },
       }
     );
+    this.fields = props.modulesManager.getConf("fe-policyHolder", "fields", {});
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -188,7 +189,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
       validationError,
       isEmployerTinValid,
       isEmployerTinValidating,
-      validationEmployerTinError
+      validationEmployerTinError,
     } = this.props;
     return (
       <Fragment>
@@ -370,51 +371,60 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} className={classes.item}>
-            <TextInput
-              module="policyHolder"
-              label="accountancyAccount"
-              inputProps={{ maxLength: MAX_ACCOUNTANCYACCOUNT_LENGTH }}
-              value={
-                !!edited && !!edited.accountancyAccount
-                  ? edited.accountancyAccount
-                  : ""
-              }
-              error={this.regexError(
-                "accountancyAccount",
-                edited.accountancyAccount
-              )}
-              onChange={(v) => this.updateAttribute("accountancyAccount", v)}
-              readOnly={isPolicyHolderPortalUser}
-            />
-          </Grid>
-          <Grid item xs={2} className={classes.item}>
-            <TextInput
-              module="policyHolder"
-              label="bankAccount"
-              value={!!edited && !!edited.bankAccount ? edited.bankAccount : ""}
-              onChange={(v) => this.updateAttribute("bankAccount", v)}
-              readOnly={isPolicyHolderPortalUser}
-            />
-          </Grid>
-          <Grid item xs={2} className={classes.item}>
-            <TextInput
-              module="policyHolder"
-              label="paymentReference"
-              inputProps={{ maxLength: MAX_PAYMENTREFERENCE_LENGTH }}
-              value={
-                !!edited && !!edited.paymentReference
-                  ? edited.paymentReference
-                  : ""
-              }
-              error={this.regexError(
-                "paymentReference",
-                edited.paymentReference
-              )}
-              onChange={(v) => this.updateAttribute("paymentReference", v)}
-              readOnly={isPolicyHolderPortalUser}
-            />
-          </Grid>
+          {this.fields.AccountDetails !== "N" && (
+            <>
+              <Grid item xs={2} className={classes.item}>
+                <TextInput
+                  module="policyHolder"
+                  label="accountancyAccount"
+                  inputProps={{ maxLength: MAX_ACCOUNTANCYACCOUNT_LENGTH }}
+                  value={
+                    !!edited && !!edited.accountancyAccount
+                      ? edited.accountancyAccount
+                      : ""
+                  }
+                  error={this.regexError(
+                    "accountancyAccount",
+                    edited.accountancyAccount
+                  )}
+                  onChange={(v) =>
+                    this.updateAttribute("accountancyAccount", v)
+                  }
+                  readOnly={isPolicyHolderPortalUser}
+                />
+              </Grid>
+
+              <Grid item xs={2} className={classes.item}>
+                <TextInput
+                  module="policyHolder"
+                  label="bankAccount"
+                  value={
+                    !!edited && !!edited.bankAccount ? edited.bankAccount : ""
+                  }
+                  onChange={(v) => this.updateAttribute("bankAccount", v)}
+                  readOnly={isPolicyHolderPortalUser}
+                />
+              </Grid>
+              <Grid item xs={2} className={classes.item}>
+                <TextInput
+                  module="policyHolder"
+                  label="paymentReference"
+                  inputProps={{ maxLength: MAX_PAYMENTREFERENCE_LENGTH }}
+                  value={
+                    !!edited && !!edited.paymentReference
+                      ? edited.paymentReference
+                      : ""
+                  }
+                  error={this.regexError(
+                    "paymentReference",
+                    edited.paymentReference
+                  )}
+                  onChange={(v) => this.updateAttribute("paymentReference", v)}
+                  readOnly={isPolicyHolderPortalUser}
+                />
+              </Grid>
+            </>
+          )}
           <Grid item xs={2} className={classes.item}>
             <PublishedComponent
               pubRef="core.DatePicker"
@@ -467,7 +477,8 @@ const mapStateToProps = (store) => ({
   validationError:
     store.policyHolder?.validationFields?.policyHolderCode?.validationError,
   savedPolicyHolderCode: store.policyHolder?.policyHolder?.code,
-  isEmployerTinValid: store.policyHolder?.validationFields?.employerTin?.isValid,
+  isEmployerTinValid:
+    store.policyHolder?.validationFields?.employerTin?.isValid,
   isEmployerTinValidating:
     store.policyHolder?.validationFields?.employerTin?.isValidating,
   validationEmployerTinError:
